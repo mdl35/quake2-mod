@@ -45,6 +45,7 @@ void M_Menu_Main_f (void);
 		void M_Menu_StartServer_f (void);
 			void M_Menu_DMOptions_f (void);
 	void M_Menu_Video_f (void);
+	void M_Menu_Help_f(void);
 	void M_Menu_Options_f (void);
 		void M_Menu_Keys_f (void);
 	void M_Menu_Quit_f (void);

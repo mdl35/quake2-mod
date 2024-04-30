@@ -250,7 +250,6 @@ void DeathmatchScoreboardMessage (edict_t *ent, edict_t *killer)
 	gi.WriteString (string);
 }
 
-
 /*
 ==================
 DeathmatchScoreboard
@@ -291,6 +290,61 @@ void Cmd_Score_f (edict_t *ent)
 	DeathmatchScoreboard (ent);
 }
 
+/*
+==================
+Help Screen
+
+Trying to see if messages could be seen with the Help Screen
+==================
+*/
+void DisplayHelpScreenMessage(edict_t* ent)
+{
+	char    string[1024];
+
+	Com_sprintf(string, sizeof(string),
+		"xv 32 yv 8 picn help "
+		"xv 0 yv 24 cstring2 \"Welcome to my Quake 2 Rougelike Mod!\" "
+		"xv 0 yv 40 cstring2 \"-----------------------------\" "
+		"xv 0 yv 54 cstring2 \"Instructions:\" "
+		"xv 0 yv 72 cstring2 \"- Stay alert for randomized changes in weapon stats, enemies, and map order.\" "
+		"xv 0 yv 90 cstring2 \"\"- Experiment with different strategies in order to survive as long as possible.\" "
+		"xv 0 yv 108 cstring2 \"Items:                      Weapon Bonuses:\" "
+		"xv 0 yv 126 cstring2 \"- Invisibility              - Full Ammo\" "
+		"xv 0 yv 144 cstring2 \"- Speed Up                     - Gun-ho\" "
+		"xv 0 yv 162 cstring2 \"- Extra Chance                 - Explosive Rounds\" "
+		"xv 0 yv 180 cstring2 \"- Invulnerability               - Stun\" "
+		"xv 0 yv 198 cstring2 \"- Overcharge                - Splash Damage\" "
+		"xv 0 yv 216 cstring2 \"-----------------------------\" "
+		"xv 0 yv 234 cstring2 \"For more details on the items and the mod itself, please refer to the README.md\" "
+		"xv 0 yv 252 cstring2 \"Good luck and thank you for playing my mod!\" ");
+
+	gi.WriteByte(svc_layout);
+	gi.WriteString(string);
+	gi.unicast(ent, true);
+}
+
+/*
+==================
+HelpScreen
+
+Attempting to show an in-game Help Screen
+==================
+*/
+void Cmd_HelpScreen_f(edict_t* ent)
+{
+	ent->client->showinventory = false;
+	ent->client->showscores = false;
+
+	if (ent->client->showhelpscreen && (ent->client->pers.game_helpchanged == game.helpchanged))
+	{
+		ent->client->showhelpscreen = false;
+		return;
+	}
+
+	ent->client->showhelp = true;
+	ent->client->pers.helpchanged = 0;
+	DisplayHelpScreenMessage(ent);
+}
 
 /*
 ==================
@@ -520,6 +574,7 @@ void G_SetStats (edict_t *ent)
 		ent->client->ps.stats[STAT_HELPICON] = 0;
 
 	ent->client->ps.stats[STAT_SPECTATOR] = 0;
+
 }
 
 /*

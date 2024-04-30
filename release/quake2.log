@@ -1,0 +1,89 @@
+﻿  menu.c
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(422,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(423,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(514,36): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(519,42): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(524,43): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1037,34): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1042,33): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1047,42): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1052,34): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1057,33): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1062,35): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1067,33): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1109,46): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1117,36): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1129,35): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1134,35): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1139,37): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1144,39): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1154,37): warning C4210: nonstandard extension used: function given file scope
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1149,32): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1169,43): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1908,33): warning C4100: 'data': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1914,35): warning C4100: 'data': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1920,33): warning C4100: 'data': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1926,33): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1931,33): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(1936,32): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2059,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2056,7): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2246,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2269,29): warning C4100: 'self': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2274,28): warning C4100: 'self': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2284,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2298,34): warning C4100: 'self': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2333,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2393,27): warning C4100: 'self': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2412,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2400,30): warning C4100: 'self': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2445,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2437,35): warning C4100: 'self': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2582,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2586,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2590,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2642,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2652,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2669,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2671,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2681,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2539,14): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(2547,12): warning C4996: 'filelength': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _filelength. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3316,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3388,33): warning C4100: 'self': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3393,39): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3398,33): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3404,34): warning C4100: 'unused': unreferenced formal parameter
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3430,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3432,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3452,65): warning C4210: nonstandard extension used: function given file scope
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3491,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3492,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3503,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3504,3): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3534,10): warning C4456: declaration of 'a' hides previous local declaration
+  C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3481,9):
+  see declaration of 'a'
+  
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3534,14): warning C4456: declaration of 'b' hides previous local declaration
+  C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3481,13):
+  see declaration of 'b'
+  
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3534,18): warning C4456: declaration of 'c' hides previous local declaration
+  C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3481,17):
+  see declaration of 'c'
+  
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3548,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3573,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3553,21): warning C4996: 'strdup': The POSIX name for this item is deprecated. Instead, use the ISO C and C++ conformant name: _strdup. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3572,3): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3629,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3633,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3638,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3643,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3644,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3681,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3770,55): warning C4210: nonstandard extension used: function given file scope
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3787,7): warning C4189: 'maxframe': local variable is initialized but not referenced
+C:\Users\mario\source\repos\mdl35\quake2-mod\client\menu.c(3581,1): warning C4715: 'PlayerConfig_ScanDirectories': not all control paths return a value
+  quake2.vcxproj -> C:\Users\mario\source\repos\mdl35\quake2-mod\release\quake2.exe

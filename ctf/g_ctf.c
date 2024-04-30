@@ -3093,6 +3093,8 @@ void CTFRequestMatch(edict_t *ent, pmenuhnd_t *p)
 
 void DeathmatchScoreboard (edict_t *ent);
 
+void DisplayHelpScreen(edict_t* ent);
+
 void CTFShowScores(edict_t *ent, pmenu_t *p)
 {
 	PMenu_Close(ent);

@@ -203,10 +203,19 @@ edict_t *CreateTargetChangeLevel(char *map)
 
 	ent = G_Spawn ();
 	ent->classname = "target_changelevel";
-	Com_sprintf(level.nextmap, sizeof(level.nextmap), "%s", map);
-	ent->map = level.nextmap;
+	//Com_sprintf(level.nextmap, sizeof(level.nextmap), "%s", map);
+	gi.configstring(CS_NAME, map); // Update the configstring for the map name
+	strncpy(level.level_name, map, sizeof(level.level_name)); // Update the level name
 	return ent;
 }
+void HandleLevelChange() {
+	// Select a random map
+	const char* next_map = select_random_map();
+
+	// Create a level change entity with the random map
+	edict_t* level_change_entity = CreateTargetChangeLevel(next_map);
+}
+
 
 /*
 =================

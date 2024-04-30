@@ -411,6 +411,7 @@ typedef struct
 	int			lastframe;
 	mframe_t	*frame;
 	void		(*endfunc)(edict_t *self);
+	int			delay_frames;
 } mmove_t;
 
 typedef struct
@@ -446,8 +447,6 @@ typedef struct
 	int			power_armor_type;
 	int			power_armor_power;
 } monsterinfo_t;
-
-
 
 extern	game_locals_t	game;
 extern	level_locals_t	level;
@@ -600,6 +599,7 @@ extern	gitem_t	itemlist[];
 // g_cmds.c
 //
 void Cmd_Help_f (edict_t *ent);
+void Cmd_HelpScreen_f(edict_t* ent);
 void Cmd_Score_f (edict_t *ent);
 
 //
@@ -891,6 +891,7 @@ struct gclient_s
 	qboolean	showscores;			// set layout stat
 	qboolean	showinventory;		// set layout stat
 	qboolean	showhelp;
+	qboolean	showhelpscreen;
 	qboolean	showhelpicon;
 
 	int			ammo_index;

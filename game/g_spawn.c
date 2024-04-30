@@ -30,7 +30,7 @@ typedef struct
 void SP_item_health (edict_t *self);
 void SP_item_health_small (edict_t *self);
 void SP_item_health_large (edict_t *self);
-void SP_item_health_mega (edict_t *self);
+void SP_item_health_mega(edict_t* self);
 
 void SP_info_player_start (edict_t *ent);
 void SP_info_player_deathmatch (edict_t *ent);
@@ -793,8 +793,61 @@ Only used for the world.
 "gravity"	800 is default gravity
 "message"	text to print at user logon
 */
+const char* SP_MAPS[] =
+{
+	"base1",
+	"base2",
+	"base3",
+	"train",
+	"bunk1",
+	"ware1",
+	"ware2",
+	"jail1",
+	"jail2",
+	"jail3",
+	"jail4",
+	"jail5",
+	"security",
+	"mintro",
+	"mine1",
+	"mine2",
+	"mine3",
+	"mine4",
+	"fact1",
+	"fact2",
+	"fact3",
+	"power1",
+	"power2",
+	"cool1",
+	"waste1",
+	"waste2",
+	"waste3",
+	"biggun",
+	"hangar1",
+	"space",
+	"lab",
+	"hangar2",
+	"command",
+	"strike",
+	"city1",
+	"city2",
+	"city3"
+};
+const int num_maps = sizeof(SP_MAPS) / sizeof(SP_MAPS[0]);
+
+const char* select_random_map() {
+	srand(time(NULL));
+	int random_index = rand() % num_maps;
+	return SP_MAPS[random_index];
+}
+
 void SP_worldspawn (edict_t *ent)
 {
+	const char* next_map = select_random_map();
+
+	gi.configstring(CS_NAME, next_map);
+	strncpy(level.level_name, next_map, sizeof(level.level_name));
+
 	ent->movetype = MOVETYPE_PUSH;
 	ent->solid = SOLID_BSP;
 	ent->inuse = true;			// since the world doesn't use G_Spawn()
@@ -812,14 +865,14 @@ void SP_worldspawn (edict_t *ent)
 		strcpy (level.nextmap, st.nextmap);
 
 	// make some data visible to the server
-
-	if (ent->message && ent->message[0])
-	{
-		gi.configstring (CS_NAME, ent->message);
-		strncpy (level.level_name, ent->message, sizeof(level.level_name));
-	}
-	else
-		strncpy (level.level_name, level.mapname, sizeof(level.level_name));
+	
+	//if (ent->message && ent->message[0])
+	//{
+	//	gi.configstring (CS_NAME, ent->message);
+	//	strncpy (level.level_name, ent->message, sizeof(level.level_name));
+	//}
+	//else
+	//	strncpy (level.level_name, level.mapname, sizeof(level.level_name));
 
 	if (st.sky && st.sky[0])
 		gi.configstring (CS_SKY, st.sky);

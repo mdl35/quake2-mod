@@ -980,9 +980,10 @@ void ClientCommand (edict_t *ent)
 		Cmd_Score_f (ent);
 		return;
 	}
-	if (Q_stricmp (cmd, "help") == 0)
+
+	if (Q_stricmp(cmd, "helpscreen") == 0)
 	{
-		Cmd_Help_f (ent);
+		Cmd_HelpScreen_f(ent);
 		return;
 	}
 
