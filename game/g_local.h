@@ -942,13 +942,21 @@ struct gclient_s
 	// powerup timers
 	float		quad_framenum;
 	float		invincible_framenum;
+	float		gunho_framenum;
+	float		speed_up_framenum;
+	float		splash_framenum;
+	int			invisibility_framenum;
 	float		breather_framenum;
 	float		enviro_framenum;
 
+	qboolean	splash;
+	qboolean	is_invisible;
+	qboolean	extra_chance;
 	qboolean	grenade_blew_up;
 	float		grenade_time;
 	int			silencer_shots;
 	int			weapon_sound;
+
 
 	float		pickup_msg_time;
 
@@ -1060,7 +1068,7 @@ struct edict_s
 
 	float		powerarmor_time;
 
-	char		*map;			// target_changelevel
+	const char		*map;			// target_changelevel
 
 	int			viewheight;		// height above origin where eyesight is determined
 	int			takedamage;
@@ -1110,5 +1118,7 @@ struct edict_s
 	// common data blocks
 	moveinfo_t		moveinfo;
 	monsterinfo_t	monsterinfo;
+
+	qboolean	speed_up;
 };
 

@@ -279,8 +279,9 @@ void use_target_changelevel (edict_t *self, edict_t *other, edict_t *activator)
 	}
 
 	const char* next_map = select_random_map();
-	strcpy(level.nextmap, next_map);
 
+	strncpy(level.nextmap, next_map, sizeof(level.nextmap) - 1);
+	level.nextmap[sizeof(level.nextmap) - 1] = '\0';
 
 	// if noexit, do a ton of damage to other
 	if (deathmatch->value && !( (int)dmflags->value & DF_ALLOW_EXIT) && other != world)
@@ -314,7 +315,7 @@ void SP_target_changelevel (edict_t *ent)
 
 	// ugly hack because *SOMEBODY* screwed up their map
    //if((Q_stricmp(level.mapname, "fact1") == 0) && (Q_stricmp(ent->map, "fact3") == 0))
-	ent->map = "level.nextmap";
+	ent->map = level.nextmap;
 
 	ent->use = use_target_changelevel;
 	ent->svflags = SVF_NOCLIENT;

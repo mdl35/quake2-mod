@@ -45,7 +45,11 @@ void MoveClientToIntermission (edict_t *ent)
 
 	// clean up powerup info
 	ent->client->quad_framenum = 0;
+	ent->client->splash_framenum = 0;
 	ent->client->invincible_framenum = 0;
+	ent->client->gunho_framenum = 0;
+	ent->client->speed_up_framenum = 0;
+	ent->client->invisibility_framenum = 0;
 	ent->client->breather_framenum = 0;
 	ent->client->enviro_framenum = 0;
 	ent->client->grenade_blew_up = false;
@@ -428,9 +432,9 @@ void Cmd_Help_f (edict_t *ent)
 G_SetStats
 ===============
 */
-void G_SetStats (edict_t *ent)
+void G_SetStats(edict_t* ent)
 {
-	gitem_t		*item;
+	gitem_t* item;
 	int			index, cells;
 	int			power_armor_type;
 
@@ -451,17 +455,17 @@ void G_SetStats (edict_t *ent)
 	else
 	{
 		item = &itemlist[ent->client->ammo_index];
-		ent->client->ps.stats[STAT_AMMO_ICON] = gi.imageindex (item->icon);
+		ent->client->ps.stats[STAT_AMMO_ICON] = gi.imageindex(item->icon);
 		ent->client->ps.stats[STAT_AMMO] = ent->client->pers.inventory[ent->client->ammo_index];
 	}
-	
+
 	//
 	// armor
 	//
-	power_armor_type = PowerArmorType (ent);
+	power_armor_type = PowerArmorType(ent);
 	if (power_armor_type)
 	{
-		cells = ent->client->pers.inventory[ITEM_INDEX(FindItem ("cells"))];
+		cells = ent->client->pers.inventory[ITEM_INDEX(FindItem("cells"))];
 		if (cells == 0)
 		{	// ran out of cells for power armor
 			ent->flags &= ~FL_POWER_ARMOR;
@@ -470,16 +474,16 @@ void G_SetStats (edict_t *ent)
 		}
 	}
 
-	index = ArmorIndex (ent);
-	if (power_armor_type && (!index || (level.framenum & 8) ) )
+	index = ArmorIndex(ent);
+	if (power_armor_type && (!index || (level.framenum & 8)))
 	{	// flash between power armor and other armor icon
-		ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex ("i_powershield");
+		ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex("i_powershield");
 		ent->client->ps.stats[STAT_ARMOR] = cells;
 	}
 	else if (index)
 	{
-		item = GetItemByIndex (index);
-		ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex (item->icon);
+		item = GetItemByIndex(index);
+		ent->client->ps.stats[STAT_ARMOR_ICON] = gi.imageindex(item->icon);
 		ent->client->ps.stats[STAT_ARMOR] = ent->client->pers.inventory[index];
 	}
 	else
@@ -502,23 +506,33 @@ void G_SetStats (edict_t *ent)
 	//
 	if (ent->client->quad_framenum > level.framenum)
 	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_quad");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->quad_framenum - level.framenum)/10;
+		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex("p_quad");
+		ent->client->ps.stats[STAT_TIMER] = (ent->client->quad_framenum - level.framenum) / 10;
 	}
 	else if (ent->client->invincible_framenum > level.framenum)
 	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_invulnerability");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->invincible_framenum - level.framenum)/10;
+		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex("p_invulnerability");
+		ent->client->ps.stats[STAT_TIMER] = (ent->client->invincible_framenum - level.framenum) / 10;
 	}
 	else if (ent->client->enviro_framenum > level.framenum)
 	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_envirosuit");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->enviro_framenum - level.framenum)/10;
+		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex("p_envirosuit");
+		ent->client->ps.stats[STAT_TIMER] = (ent->client->enviro_framenum - level.framenum) / 10;
 	}
 	else if (ent->client->breather_framenum > level.framenum)
 	{
-		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex ("p_rebreather");
-		ent->client->ps.stats[STAT_TIMER] = (ent->client->breather_framenum - level.framenum)/10;
+		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex("p_rebreather");
+		ent->client->ps.stats[STAT_TIMER] = (ent->client->breather_framenum - level.framenum) / 10;
+	}
+	else if (ent->client->speed_up_framenum > level.framenum)
+	{
+		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex("p_invulnerability");
+		ent->client->ps.stats[STAT_TIMER] = (ent->client->speed_up_framenum - level.framenum) / 10;
+	}
+	else if (ent->client->splash_framenum > level.framenum)
+	{
+		ent->client->ps.stats[STAT_TIMER_ICON] = gi.imageindex("p_invulnerability");
+		ent->client->ps.stats[STAT_TIMER] = (ent->client->splash_framenum - level.framenum) / 10;
 	}
 	else
 	{

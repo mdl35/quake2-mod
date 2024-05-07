@@ -965,7 +965,7 @@ void Machinegun_Fire (edict_t *ent)
 	vec3_t		start;
 	vec3_t		forward, right;
 	vec3_t		angles;
-	int			damage = 8;
+	int			damage = rand() % 20 + 10;//was 8
 	int			kick = 2;
 	vec3_t		offset;
 
@@ -1067,9 +1067,9 @@ void Chaingun_Fire (edict_t *ent)
 	int			kick = 2;
 
 	if (deathmatch->value)
-		damage = 6;
+		damage = rand() % 20 + 10;// was 6
 	else
-		damage = 8;
+		damage = rand() % 20 + 10;// was 8
 
 	if (ent->client->ps.gunframe == 5)
 		gi.sound(ent, CHAN_AUTO, gi.soundindex("weapons/chngnu1a.wav"), 1, ATTN_IDLE, 0);
@@ -1199,7 +1199,7 @@ void weapon_shotgun_fire (edict_t *ent)
 	vec3_t		start;
 	vec3_t		forward, right;
 	vec3_t		offset;
-	int			damage = 6; /*was 4*/
+	int			damage = rand() % 20 + 10; /*was 4*/
 	int			kick = 8;
 
 	if (ent->client->ps.gunframe == 5) /*was (ent->client->ps.gunframe == 9)*/
@@ -1257,7 +1257,7 @@ void weapon_supershotgun_fire (edict_t *ent)
 	vec3_t		forward, right;
 	vec3_t		offset;
 	vec3_t		v;
-	int			damage = 8; /*was 6*/
+	int			damage = rand() % 20 + 10;
 	int			kick = 12;
 
 	AngleVectors (ent->client->v_angle, forward, right, NULL);
@@ -1326,12 +1326,12 @@ void weapon_railgun_fire (edict_t *ent)
 
 	if (deathmatch->value)
 	{	// normal damage is too extreme in dm
-		damage = 100;
+		damage = rand() % 50 + 100;
 		kick = 200;
 	}
 	else
 	{
-		damage = 150;
+		damage = rand() % 50 + 100;
 		kick = 250;
 	}
 
@@ -1391,9 +1391,9 @@ void weapon_bfg_fire (edict_t *ent)
 	float	damage_radius = 1000;
 
 	if (deathmatch->value)
-		damage = 200;
+		damage = rand() % 5 + 10;
 	else
-		damage = 500;
+		damage = rand() % 5 + 10;
 
 	if (ent->client->ps.gunframe == 9)
 	{

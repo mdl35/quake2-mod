@@ -412,10 +412,13 @@ void TossClientWeapon (edict_t *self)
 	gitem_t		*item;
 	edict_t		*drop;
 	qboolean	quad;
+	qboolean	splash;
 	float		spread;
 
 	if (!deathmatch->value)
 		return;
+
+	splash = false;
 
 	item = self->client->pers.weapon;
 	if (! self->client->pers.inventory[self->client->ammo_index] )
@@ -430,6 +433,11 @@ void TossClientWeapon (edict_t *self)
 
 	if (item && quad)
 		spread = 22.5;
+	else
+		spread = 0.0;
+	
+	if (item && splash)
+		spread = 50;
 	else
 		spread = 0.0;
 
@@ -543,6 +551,9 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 	// remove powerups
 	self->client->quad_framenum = 0;
 	self->client->invincible_framenum = 0;
+	self->client->gunho_framenum = 0;
+	self->client->speed_up_framenum = 0;
+	self->client->invisibility_framenum = 0;
 	self->client->breather_framenum = 0;
 	self->client->enviro_framenum = 0;
 	self->flags &= ~FL_POWER_ARMOR;
@@ -1628,6 +1639,12 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 		pm.trace = PM_trace;	// adds default parms
 		pm.pointcontents = gi.pointcontents;
+
+		if (ent->speed_up) {
+			pm.cmd.forwardmove *= 7;
+			pm.cmd.sidemove *= 7;
+		}
+
 
 		// perform a pmove
 		gi.Pmove (&pm);

@@ -46,10 +46,11 @@ static int	body_armor_index;
 static int	power_screen_index;
 static int	power_shield_index;
 
+
 #define HEALTH_IGNORE_MAX	1
 #define HEALTH_TIMED		2
 
-#define ITEM_SPEED_UP       1
+#define EF_SPEED_ACTIVE (1 << 30)
 
 void Use_Quad (edict_t *ent, gitem_t *item);
 static int	quad_drop_timeout_hack;
@@ -263,72 +264,20 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 	gitem_t	*item;
 	int		index;
 
-	if (other->client->pers.max_bullets < 300)
-		other->client->pers.max_bullets = 300;
-	if (other->client->pers.max_shells < 200)
-		other->client->pers.max_shells = 200;
-	if (other->client->pers.max_rockets < 100)
-		other->client->pers.max_rockets = 100;
-	if (other->client->pers.max_grenades < 100)
-		other->client->pers.max_grenades = 100;
-	if (other->client->pers.max_cells < 300)
-		other->client->pers.max_cells = 300;
-	if (other->client->pers.max_slugs < 100)
-		other->client->pers.max_slugs = 100;
+	other->client->pers.max_bullets = 300;
+	other->client->pers.max_shells = 200;
+	other->client->pers.max_rockets = 100;
+	other->client->pers.max_grenades = 100;
+	other->client->pers.max_cells = 300;
+	other->client->pers.max_slugs = 100;
 
-	item = FindItem("Bullets");
-	if (item)
-	{
-		index = ITEM_INDEX(item);
-		other->client->pers.inventory[index] += item->quantity;
-		if (other->client->pers.inventory[index] > other->client->pers.max_bullets)
-			other->client->pers.inventory[index] = other->client->pers.max_bullets;
-	}
-
-	item = FindItem("Shells");
-	if (item)
-	{
-		index = ITEM_INDEX(item);
-		other->client->pers.inventory[index] += item->quantity;
-		if (other->client->pers.inventory[index] > other->client->pers.max_shells)
-			other->client->pers.inventory[index] = other->client->pers.max_shells;
-	}
-
-	item = FindItem("Cells");
-	if (item)
-	{
-		index = ITEM_INDEX(item);
-		other->client->pers.inventory[index] += item->quantity;
-		if (other->client->pers.inventory[index] > other->client->pers.max_cells)
-			other->client->pers.inventory[index] = other->client->pers.max_cells;
-	}
-
-	item = FindItem("Grenades");
-	if (item)
-	{
-		index = ITEM_INDEX(item);
-		other->client->pers.inventory[index] += item->quantity;
-		if (other->client->pers.inventory[index] > other->client->pers.max_grenades)
-			other->client->pers.inventory[index] = other->client->pers.max_grenades;
-	}
-
-	item = FindItem("Rockets");
-	if (item)
-	{
-		index = ITEM_INDEX(item);
-		other->client->pers.inventory[index] += item->quantity;
-		if (other->client->pers.inventory[index] > other->client->pers.max_rockets)
-			other->client->pers.inventory[index] = other->client->pers.max_rockets;
-	}
-
-	item = FindItem("Slugs");
-	if (item)
-	{
-		index = ITEM_INDEX(item);
-		other->client->pers.inventory[index] += item->quantity;
-		if (other->client->pers.inventory[index] > other->client->pers.max_slugs)
-			other->client->pers.inventory[index] = other->client->pers.max_slugs;
-	}
+	// Refill ammo counts to their respective maximum values
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Bullets"))] = other->client->pers.max_bullets;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Shells"))] = other->client->pers.max_shells;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Rockets"))] = other->client->pers.max_rockets;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Grenades"))] = other->client->pers.max_grenades;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Cells"))] = other->client->pers.max_cells;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Slugs"))] = other->client->pers.max_slugs;
 
 	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
 		SetRespawn (ent, ent->item->quantity);
@@ -385,7 +334,7 @@ void Use_Envirosuit (edict_t *ent, gitem_t *item)
 	ent->client->pers.inventory[ITEM_INDEX(item)]--;
 	ValidateSelectedItem (ent);
 
-	if (ent->client->enviro_framenum > level.framenum)
+	if (ent->client->enviro_framenum >	level.framenum)
 		ent->client->enviro_framenum += 300;
 	else
 		ent->client->enviro_framenum = level.framenum + 300;
@@ -586,6 +535,211 @@ qboolean Pickup_Health (edict_t *ent, edict_t *other)
 
 	return true;
 }
+//--------------------------------------------------------------------------------------------------------
+/* This section is for some of the items and weapon bonuses in the game, not guaranteed to work */
+
+qboolean Pickup_InvulnerabilityPlus(edict_t* ent, edict_t* other)
+{
+	if (other->client) {
+		other->client->invincible_framenum = level.framenum + 300;
+		other->client->enviro_framenum = level.framenum + 300;
+		other->client->breather_framenum = level.framenum + 300;
+	}
+}
+
+//======================================================================
+
+qboolean Pickup_Invisibility(edict_t* ent, edict_t* other)
+{
+
+	if (other->client) {
+		other->client->invisibility_framenum = level.time + 300;
+		other->client->is_invisible = true;
+	}
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+//======================================================================
+
+qboolean Pickup_SpeedUp(edict_t* ent, edict_t* other)
+{
+	if (other->client) {
+		other->speed_up = true;
+		other->client->speed_up_framenum = level.framenum + 300;
+	}
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+//======================================================================
+
+qboolean Pickup_ExtraChance(edict_t* ent, edict_t* other)
+{
+	other->client->extra_chance = true;
+
+	ent->flags |= FL_RESPAWN;
+	return true;
+}
+
+//======================================================================
+
+qboolean Pickup_Overcharge(edict_t* ent, edict_t* other)
+{
+	gitem_t* item;
+	int		index;
+
+	if (!other->client)
+		return false;
+
+	//Sets health to max
+	if (!deathmatch->value)
+		other->max_health += 100;
+
+	if (other->health < other->max_health)
+		other->health = other->max_health;
+
+	if (!(ent->spawnflags & DROPPED_ITEM) && (deathmatch->value))
+		SetRespawn(ent, ent->item->quantity);
+
+	//Sets armor to max
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Body Armor"))] = 200;
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+//--------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------
+/* This part of the items is going to be dedicated to the weapon bonus items*/
+//======================================================================
+
+//Item gives player unlimited ammo, invulnerability, and increased DMG for limited time (30 sec)
+qboolean Pickup_GunHo(edict_t* ent, edict_t* other)
+{
+	if (!other->client)
+		return false;
+
+	//Gives invulnerability and quad damage for 30 seconds
+	if(other->client){
+		other->client->invincible_framenum = level.framenum + 300;
+		other->client->quad_framenum = level.framenum + 300;
+	}
+
+	//Sets all types ammo to near Unlimited, still wokring on unlimited ammo for 30 sec
+	other->client->pers.max_bullets = DF_INFINITE_AMMO;
+	other->client->pers.max_shells = DF_INFINITE_AMMO;
+	other->client->pers.max_rockets = DF_INFINITE_AMMO;
+	other->client->pers.max_grenades = DF_INFINITE_AMMO;
+	other->client->pers.max_cells = DF_INFINITE_AMMO;
+	other->client->pers.max_slugs = DF_INFINITE_AMMO;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Bullets"))] = other->client->pers.max_bullets;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Shells"))] = other->client->pers.max_shells;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Rockets"))] = other->client->pers.max_rockets;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Grenades"))] = other->client->pers.max_grenades;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Cells"))] = other->client->pers.max_cells;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Slugs"))] = other->client->pers.max_slugs;
+	other->client->gunho_framenum = level.framenum + 300;
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+//======================================================================
+
+
+// Item just gives full ammo to all weapons
+qboolean Pickup_FullAmmo(edict_t* ent, edict_t* other)
+{
+	gitem_t* item;
+	int		index;
+
+	if (!other->client)
+		return false;
+
+	//Sets all types ammo to max
+
+	other->client->pers.max_bullets = 300;
+	other->client->pers.max_shells = 200;
+	other->client->pers.max_rockets = 100;
+	other->client->pers.max_grenades = 100;
+	other->client->pers.max_cells = 300;
+	other->client->pers.max_slugs = 100;
+
+	// Refill ammo counts to their respective maximum values
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Bullets"))] = other->client->pers.max_bullets;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Shells"))] = other->client->pers.max_shells;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Rockets"))] = other->client->pers.max_rockets;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Grenades"))] = other->client->pers.max_grenades;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Cells"))] = other->client->pers.max_cells;
+	other->client->pers.inventory[ITEM_INDEX(FindItem("Slugs"))] = other->client->pers.max_slugs;
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+//======================================================================
+
+qboolean Pickup_Explosives(edict_t* ent, edict_t* other)
+{
+	gitem_t* item;
+	int		index;
+
+	if (!other->client)
+		return false;
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+//======================================================================
+
+qboolean Pickup_Stun(edict_t* ent, edict_t* other)
+{
+	gitem_t* item;
+	int		index;
+
+	if (!other->client)
+		return false;
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+//======================================================================
+
+qboolean Pickup_Splash(edict_t* ent, edict_t* other)
+{
+	if (!other->client)
+		return false;
+
+	if (other->client) {
+		other->client->splash = true;
+		other->client->splash_framenum = level.framenum + 300;
+	}
+
+	ent->flags |= FL_RESPAWN;
+
+	return true;
+}
+
+
+//--------------------------------------------------------------------------------------------------------
 
 //======================================================================
 
@@ -1281,8 +1435,6 @@ gitem_t	itemlist[] =
 					0,
 					/* precache */ "misc/power2.wav misc/power1.wav"
 						},
-
-
 	//
 	// WEAPONS 
 	//
@@ -1710,6 +1862,7 @@ always owned, never in the world
 					/* precache */ "items/protect.wav items/protect2.wav items/protect4.wav"
 						},
 
+
 	/*QUAKED item_silencer (.3 .3 1) (-16 -16 -16) (16 16 16)
 	*/
 		{
@@ -2113,6 +2266,173 @@ key for computer centers
 /* precache */ "items/s_health.wav items/n_health.wav items/l_health.wav items/m_health.wav"
 	},
 
+	{
+		NULL,
+		Pickup_InvulnerabilityPlus,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/* pickup */	"Plus",
+	/* width */		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
+
+	{
+		NULL,
+		Pickup_SpeedUp,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/* pickup */	"Speed Up",
+	/* width */		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
+
+	{
+		NULL,
+		Pickup_Invisibility,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/* pickup */	"Invisibility",
+	/* width */		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
+
+	{
+		NULL,
+		Pickup_Overcharge,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/* pickup */	"Overcharge",
+	/* width */		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
+
+	{
+		NULL,
+		Pickup_ExtraChance,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/* pickup */	"Extra Chance",
+	/* width */		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
+
+	{
+		NULL,
+		Pickup_FullAmmo,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/*pickup*/		"Full Ammo",
+	/*width*/		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
+
+	{
+		NULL,
+		Pickup_GunHo,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/*pickup*/		"GunHo",
+	/*width*/		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
+
+	{
+		NULL,
+		Pickup_Splash,
+		NULL,
+		NULL,
+		NULL,
+		"items/pkup.wav",
+		NULL, 0,
+		NULL,
+		NULL,
+	/*pickup*/		"Splash",
+	/*width*/		3,
+			0,
+			NULL,
+			0,
+			0,
+			NULL,
+			0,
+			NULL
+	},
 	// end of list marker
 	{NULL}
 };
