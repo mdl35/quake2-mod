@@ -670,7 +670,6 @@ qboolean Pickup_FullAmmo(edict_t* ent, edict_t* other)
 		return false;
 
 	//Sets all types ammo to max
-
 	other->client->pers.max_bullets = 300;
 	other->client->pers.max_shells = 200;
 	other->client->pers.max_rockets = 100;
