@@ -6,18 +6,18 @@ There is nothing special about the controls, works the same as the base game.
 
 After starting the game, the map that is loaded will be random, and each subsequent map is going to be different.
 After spawing in, the stats of the starting weapon and all other weapons will have random stats.
-The current stats that will be changed, will be the fire rate, damage, and fire mode
+The current stats that will be changed, will be the fire rate and damage
 
 Bonus Weapon Items:
 - Full Ammo - Refills all ammo types to max capacity
-- Gun-ho - Gives player unlimited ammo and increased fire rate for a period of time
-- Explosive Rounds - For a limited time, all shots fired will be turned into grenades
-- Splash Damage - Makes all bullet types do splash damage to enemies in a certain range for a limited time
-- Stun - Shots will freeze enemies in their place for a short period of time
+- Gun-ho - Gives player unlimited ammo, invulnerability, and quad damage for 30 sec
+- Explosive Rounds - For a limited time, all shots fired will be turned into rockets
+- Splash Damage - Makes all bullet types do splash damage to enemies in a certain range for 30 sec
+- Stun - Shots will freeze enemies in their place for a 30 sec
 
 Items:
 - Extra Chance - Gives the player an extra life, where after death, the player can be revived with full health and armor
-- Speed Up - Speeds up the player's movement speed for a limited time
-- Invulnerability - Will make the player not take damage for a limited time
-- Invisibility - Will make the player invisible to enemies for a limited time
-- Overcharge - It will make the player's health and armor go above the normal range.
+- Speed Up - Speeds up the player's movement speed for 30 sec
+- Invulnerability Plus - Will make the player not take damage from anything for 30 sec
+- Invisibility - Will make the player invisible to enemies for 30 sec
+- Overcharge - It will max out the player's health and shields
